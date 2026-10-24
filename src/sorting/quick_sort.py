@@ -1,5 +1,8 @@
-import numpy as np
+import matplotlib.pyplot as plt
+import time
 import random
+import numpy as np
+from numpy import random
 # Te quick sort is a divide and conquer aloritm. We coosse a pivot and partition around tis pivot
 # The key process in quickSort is a partition(). There are three common algorithms to partition. All these algorithms have O(n) time complexity.
 
@@ -50,7 +53,7 @@ def Hoare(arr, low, high):
 
 def Lomuto_sort(arr, low, high):
       if low < high:
-        res = np.random.randint(low, high)
+        res = random.randint(low, high)
         
         # pi is the partition return index of pivot
         pi = partitionLom(arr, low, high, res)
@@ -71,6 +74,31 @@ if __name__ == "__main__":
     for val in arr:
         print(val, end=" ")
     for val in arr1:
-            print(val, end=" ")
+        print(val, end=" ")
+if __name__ == "__main__":
+    size1 = []
+    size2 = []
+    Time1 = [] 
+    Time2 = []
+    for i in range(20):
+        n1 = random.randint(1, 100000)
+        n2 = random.randint(1, 100000)
+        size1 = np.append(size1, n, axis = None)
+        size1 = np.append(size2, n, axis = None)
+        arr1 = np.random.randint(2000, size=(n1))
+        arr2 = np.random.randint(2000, size=(n2))
+        start_time1 = time.time()
+        Lomuto_sort(arr1, 0, len(arr1) - 1)
+        end_time1 = time.time()
+        Time1 = np.append(Time1, (end_time1 - start_time1), axis = None)
+        start_time = time.time()
+        Hoare(arr2, 0, len(arr2) - 1)
+        end_time = time.time()
+        Time2 = np.append(Time2, (end_time - start_time), axis = None)
+        # for i in arr:
+        #     print(i, end=" ")
 
-
+    plt.plot(size1, Time1)
+    plt.show()
+    plt.plot(size2, Time2)
+    plt.show()
